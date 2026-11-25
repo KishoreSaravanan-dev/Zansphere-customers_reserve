@@ -92,8 +92,70 @@ function Product() {
           <p className="product-description">
             Apple AirPods 4 Wireless Earbuds, Personalised Spatial Audio, Sweat and Water Resistant Bluetooth Headset (White, True Wireless)
           </p>
+
+          <div className="price-container">
+            <div className="price-row">
+              <span className="price-current">₹14,000</span>
+              <del className="price-original">₹19,000</del>
+              <span className="price-badge">Flash Deal</span>
+            </div>
+            <p className="price-demo-note">Demo pricing • No transaction needed</p>
+          </div>
+
+          <div className="variant-group">
+            <span className="variant-label">Edition</span>
+            <div className="edition-options">
+              <label className="edition-pill">
+                <input type="radio" name="edition" value="premium" defaultChecked />
+                <span>Premium Edition</span>
+              </label>
+              <label className="edition-pill">
+                <input type="radio" name="edition" value="standard" />
+                <span>Standard Edition</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="variant-group color-row">
+            <span className="variant-label">Color:</span>
+            <span className="color-tag">White</span>
+          </div>
+
+          <div className="highlights-group">
+            <h3 className="section-heading">Key Highlights</h3>
+            <ul className="highlights-list">
+              <li>Active noise cancellation</li>
+              <li>Up to 6 hours battery</li>
+              <li>Lightweight over-ear build</li>
+              <li>Lossless Bluetooth 5.3</li>
+            </ul>
+          </div>
+
+          <div className="live-status-card">
+            <div className="stock-status-row">
+              <span className="status-indicator-dot"></span>
+              <span className="stock-label">Live stock status:</span>
+              <span className="stock-count-highlight">1 unit available</span>
+            </div>
+            <p className="queue-info-text">
+              Live queue active. When you click reserve, a 2-minute server hold guarantees this unit for customer <strong>{customer}</strong>.
+            </p>
+          </div>
+
+          <div className="action-group">
+            <button className="buy-btn">Buy / Reserve Unit</button>
+            <p className="reserve-note">Reserve one unit now. Confirm or cancel within 2 minutes.</p>
+          </div>
         </div>
       </div>
+
+      <footer className="page-footer">
+        <ul>
+          <li>Zansphere Reservation System Demo</li>
+          <li>2-minute server-guaranteed stock hold</li>
+          <li>Fictional assessment product</li>
+        </ul>
+      </footer>
     </>
   );
 }
