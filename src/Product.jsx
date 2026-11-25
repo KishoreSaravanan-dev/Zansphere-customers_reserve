@@ -1,13 +1,27 @@
 import { useState } from "react";
 import logo from "./assets/zanSphere.png";
 import "./index.css";
+import flash from "./assets/icons8-flash-sale-64.png";
+import product_image from "./assets/AirPods.png"
 
 const customers = ["Nasreen Noor", "Kishore Saravanan"];
+
+const productPath = [
+  "Home",
+  "Audio & Video",
+  "Headset",
+  "Earphones",
+  "Wireless Earphones",
+  "True Wireless",
+  "APPLE True Wireless",
+  "AirPods 4 Wireless Earbuds",
+];
 
 function Product() {
   const [customer, setCustomer] = useState(customers[0]);
 
   return (
+    <>
     <header className="topbar">
       <a className="brand" href="/" aria-label="Zansphere home">
         <img src={logo} alt="" />
@@ -38,6 +52,49 @@ function Product() {
         </svg>
       </button>
     </header>
+
+    <div className="product-breadcrumb">
+        <nav aria-label="Breadcrumb">
+          <ol>
+            {productPath.map((item, index) => (
+              <li key={item}>
+                <span
+                  className={
+                    index === productPath.length - 1
+                      ? "breadcrumb-current"
+                      : "breadcrumb-link"
+                  }
+                >
+                  {item}
+                </span>
+
+                {index !== productPath.length - 1 && (
+                  <span className="breadcrumb-separator">/</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+
+      <div className="product-details-section">
+        <div className="product_image">
+          <div className="stock-badge">
+            <img src={flash} alt="" className="flash-icon" />
+            <p>1 OF 1 Limited Stock</p>
+          </div>
+          <img src={product_image} alt="AirPods" className="product-main-img" width="200" height="200" />
+          <h3 className="edition-tag">Premium Edition</h3>
+        </div>
+
+        <div className="side_panel">
+          <h2 className="product-title">Apple Airpods 4</h2>
+          <p className="product-description">
+            Apple AirPods 4 Wireless Earbuds, Personalised Spatial Audio, Sweat and Water Resistant Bluetooth Headset (White, True Wireless)
+          </p>
+        </div>
+      </div>
+    </>
   );
 }
 
