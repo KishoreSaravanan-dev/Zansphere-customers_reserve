@@ -1,3 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-primary: #4434c7;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #1e293b;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #1e293b;
+  --color-destructive: #e11d48;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #4434c7;
+}
+
 .topbar {
   min-height: 64px;
   display: flex;
@@ -104,7 +124,27 @@
 }
 
 @media (max-width: 700px) {
-  .topbar { flex-wrap: wrap; gap: 12px 18px; }
+  @import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+  --color-primary: #4434c7;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #1e293b;
+  --color-accent: #f1f5f9;
+  --color-accent-foreground: #1e293b;
+  --color-destructive: #e11d48;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
+  --color-ring: #4434c7;
+}
+
+.topbar { flex-wrap: wrap; gap: 12px 18px; }
   .main-nav { order: 3; width: 100%; gap: 18px; }
   .customer-picker { margin-left: auto; }
 }
@@ -762,10 +802,15 @@
   transition: all 0.15s ease;
 }
 
-.btn-cancel-res:hover {
+.btn-cancel-res:hover:not(:disabled) {
   background: #fff1f2;
   color: #e11d48;
   border-color: #fecdd3;
+}
+
+.btn-cancel-res:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .cancel-hint {

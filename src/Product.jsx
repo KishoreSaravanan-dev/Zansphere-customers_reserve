@@ -1,7 +1,7 @@
 import { useState } from "react";
 import logo from "./assets/zanSphere.png";
 import "./index.css";
-import flash from "./assets/icons8-flash-sale-64.png";
+// import flash from "./assets/icons8-flash-sale-64.png";
 import product_image from "./assets/AirPods.png"
 
 const defaultCustomers = ["Nasreen Noor", "Kishore Saravanan"];
@@ -87,8 +87,8 @@ function Product({
       <div className="product-details-section">
         <div className="product_image">
           <div className="stock-badge">
-            <img src={flash} alt="" className="flash-icon" />
-            <p>1 OF 1 Limited Stock</p>
+            {/* <img src={flash} alt="" className="flash-icon" /> */}
+            <p>Limited Stock</p>
           </div>
           <img src={product_image} alt="AirPods" className="product-main-img" width="200" height="200" />
           <h3 className="edition-tag">Premium Edition</h3>

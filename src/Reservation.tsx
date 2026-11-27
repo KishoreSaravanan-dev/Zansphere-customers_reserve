@@ -1,5 +1,16 @@
 import { useState, useEffect } from "react";
-import product_image from "./assets/Airpods.png";
+import { CheckCircle } from "lucide-react";
+import product_image from "./assets/AirPods.png";
+import {
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface ReservationProps {
   customer?: string;
@@ -9,6 +20,7 @@ interface ReservationProps {
 function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
   const [time, setTime] = useState(120);
   const [status, setStatus] = useState<"active" | "confirmed" | "cancelled">("active");
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     if (status !== "active") return;
@@ -22,6 +34,11 @@ function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
 
     return () => clearInterval(timer);
   }, [status]);
+
+  const handleConfirm = () => {
+    setStatus("confirmed");
+    setDialogOpen(true);
+  };
 
   return (
     <div className="reservation-page">
@@ -71,13 +88,14 @@ function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
                 type="button"
                 className="btn-confirm-res"
                 disabled={time === 0 || status !== "active"}
-                onClick={() => setStatus("confirmed")}
+                onClick={handleConfirm}
               >
                 {status === "confirmed" ? "Confirmed ✓" : "Confirm Reservation"}
               </button>
               <button
                 type="button"
                 className="btn-cancel-res"
+                disabled={status === "confirmed"}
                 onClick={() => {
                   setStatus("cancelled");
                   if (onBack) onBack();
@@ -143,6 +161,41 @@ function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
           </div>
         </aside>
       </div>
+
+      {/* Reservation Confirmed Success Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent>
+          <DialogBody className="py-8 text-center">
+            <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-600" />
+            <DialogTitle className="mb-2 text-xl font-semibold">
+              Reservation Confirmed!
+            </DialogTitle>
+            <DialogDescription className="mb-6 text-base">
+              Your unit has been reserved successfully. Stock is now locked for{" "}
+              <span className="font-medium text-foreground">{customer}</span>.
+            </DialogDescription>
+            <div className="bg-muted/30 mb-6 rounded-lg p-4">
+              <div className="mb-2 flex justify-between text-sm">
+                <span>Product:</span>
+                <span className="font-medium">Airpods 4 (White)</span>
+              </div>
+              <div className="mb-2 flex justify-between text-sm">
+                <span>Reference:</span>
+                <span className="font-medium">#ZAN-84920-X</span>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span>Amount:</span>
+                <span className="font-medium">₹14,000</span>
+              </div>
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button className="w-full">Continue</Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
