@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { CheckCircle } from "lucide-react";
-import product_image from "./assets/AirPods.png";
+// import { useNavigate } from "react-router-dom";
+import product_image from "./assets/Airpods.png";
+
 import {
   Dialog,
   DialogBody,
@@ -21,6 +23,7 @@ function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
   const [time, setTime] = useState(120);
   const [status, setStatus] = useState<"active" | "confirmed" | "cancelled">("active");
   const [dialogOpen, setDialogOpen] = useState(false);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (status !== "active") return;
@@ -33,7 +36,13 @@ function Reservation({ customer = "Nasreen Noor", onBack }: ReservationProps) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [status]);
+  },[status]);
+
+  useEffect(() => {
+    if (time === 0 && status === "active") {
+        onBack?.();
+    }
+}, [time, status, onBack]);
 
   const handleConfirm = () => {
     setStatus("confirmed");

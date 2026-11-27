@@ -3,6 +3,7 @@ import logo from "./assets/zanSphere.png";
 import "./index.css";
 // import flash from "./assets/icons8-flash-sale-64.png";
 import product_image from "./assets/AirPods.png"
+import product_image1 from "./assets/Airpods1.png"
 
 const defaultCustomers = ["Nasreen Noor", "Kishore Saravanan"];
 
@@ -91,6 +92,7 @@ function Product({
             <p>Limited Stock</p>
           </div>
           <img src={product_image} alt="AirPods" className="product-main-img" width="200" height="200" />
+          <img src={product_image1} alt="" className="product-main-img" width="200" height="200" />
           <h3 className="edition-tag">Premium Edition</h3>
         </div>
 
@@ -113,12 +115,7 @@ function Product({
             <span className="variant-label">Edition</span>
             <div className="edition-options">
               <label className="edition-pill">
-                <input type="radio" name="edition" value="premium" defaultChecked />
                 <span>Premium Edition</span>
-              </label>
-              <label className="edition-pill">
-                <input type="radio" name="edition" value="standard" />
-                <span>Standard Edition</span>
               </label>
             </div>
           </div>
