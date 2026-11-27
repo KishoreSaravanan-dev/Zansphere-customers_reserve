@@ -4,7 +4,7 @@ import "./index.css";
 import flash from "./assets/icons8-flash-sale-64.png";
 import product_image from "./assets/AirPods.png"
 
-const customers = ["Nasreen Noor", "Kishore Saravanan"];
+const defaultCustomers = ["Nasreen Noor", "Kishore Saravanan"];
 
 const productPath = [
   "Home",
@@ -17,8 +17,15 @@ const productPath = [
   "AirPods 4 Wireless Earbuds",
 ];
 
-function Product() {
-  const [customer, setCustomer] = useState(customers[0]);
+function Product({
+  customer: propCustomer,
+  setCustomer: propSetCustomer,
+  customers = defaultCustomers,
+  onBuy,
+}) {
+  const [localCustomer, setLocalCustomer] = useState(customers[0]);
+  const customer = propCustomer ?? localCustomer;
+  const setCustomer = propSetCustomer ?? setLocalCustomer;
 
   return (
     <>
@@ -143,7 +150,9 @@ function Product() {
           </div>
 
           <div className="action-group">
-            <button className="buy-btn">Buy / Reserve Unit</button>
+            <button type="button" className="buy-btn" onClick={onBuy}>
+              Buy / Reserve Unit
+            </button>
             <p className="reserve-note">Reserve one unit now. Confirm or cancel within 2 minutes.</p>
           </div>
         </div>
